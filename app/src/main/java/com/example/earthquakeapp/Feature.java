@@ -40,11 +40,9 @@ public class Feature {
 
     @Override
     public String toString() {
-        return "Feature{" +
-                "properties=" + properties +
-                ", geometry=" + geometry +
-                ", id='" + id + '\'' +
-                ", type='" + type + '\'' +
-                '}';
+        return "Place: " + properties.getPlace() +
+                "\nMagnitude: " + properties.getMag() +
+                "\nSignificance of Earthquake(Aggregate): " + properties.getSig() +
+                "\nInstrumental Intensity of Event: " + properties.getMmi();
     }
 }

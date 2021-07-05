@@ -123,12 +123,15 @@ public class MainActivity extends AppCompatActivity {
             InputStream earthquakeData = getAssets().open("EarthquakeData.json");
             List<Feature> searchResult = JSONParser.readJsonWithObjectMapper(inputMap, earthquakeData);
             int i = 1;
-            for (Feature x: searchResult){
-                mSearchResultsDisplay.append("\n Search result " + i + ": \n\n" + x.toString() + "\n");
-                i += 1;
+            if (searchResult == null || searchResult.isEmpty()){
+                mSearchResultsDisplay.append("\nNo such earthquake exists.");
+            }else {
+                for (Feature x : searchResult) {
+                    mSearchResultsDisplay.append("\nSearch result " + i + ": \n\n" + x.toString() + "\n");
+                    i += 1;
+                }
             }
         }catch(Exception e){
-
         }
     }
 
