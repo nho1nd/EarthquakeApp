@@ -18,7 +18,8 @@
         android:textSize="32dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Earthquake Info App" />
+        android:text="Earthquake Info App"
+        android:scrollbars = "vertical"/>
 
     <EditText
         android:id="@+id/et_search_box"
@@ -44,7 +45,7 @@
         android:id="@+id/tv_display_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Information:"
+        android:text="SEARCH RESULTS: "
         android:layout_below="@id/reset_button"/>
 
 </RelativeLayout>

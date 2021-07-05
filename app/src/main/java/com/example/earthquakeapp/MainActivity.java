@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         mResetButton = (Button) findViewById(R.id.reset_button);
 
         final String[] list_cities = {"Hawaii", "California"};
+
+        mSearchResultsDisplay.setMovementMethod(new ScrollingMovementMethod());
 
         final String defaultDisplayText = mSearchResultsDisplay.getText().toString();
 
@@ -119,10 +122,11 @@ public class MainActivity extends AppCompatActivity {
         try{
             InputStream earthquakeData = getAssets().open("EarthquakeData.json");
             List<Feature> searchResult = JSONParser.readJsonWithObjectMapper(inputMap, earthquakeData);
+            int i = 1;
             for (Feature x: searchResult){
-                mSearchResultsDisplay.setText(x.toString());
+                mSearchResultsDisplay.append("\n Search result " + i + ": \n\n" + x.toString() + "\n");
+                i += 1;
             }
-            //mSearchResultsDisplay.setText( searchResult);
         }catch(Exception e){
 
         }
