@@ -23,7 +23,7 @@ public class CustomJSONParser {
         List <Feature> searchResult = null;
         try {
             //Turning JSON file into a stream/string
-            FileInputStream earthquakeData = new FileInputStream("app/res/EarthquakeData.json");
+            FileInputStream earthquakeData = new FileInputStream("app/src/main/res/EarthquakeData.json");
 
             //Making a Type Reference to a list of Features
             TypeReference<List<Feature>> typeReference= new TypeReference<List<Feature>>(){};
