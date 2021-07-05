@@ -10,7 +10,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Intent;
 import android.util.Log;
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTitleApp;
@@ -43,16 +45,17 @@ public class MainActivity extends AppCompatActivity {
                         String searchText = mSearchTermEditText.getText().toString();
                         // check if search string matches
                         // maybe I can use a dictionary?
-                        for(String input_string : list_cities){
-                            if(input_string.toLowerCase().equals(searchText.toLowerCase())){
-                                mSearchResultsDisplay.setText("Information: ");
-                                mSearchResultsDisplay.setText(input_string);
-                                // display information on Earthquake
-                                break;
-                            }else{
-                                mSearchResultsDisplay.setText("No results match.");
-                            }
-                        }
+                        searcher(searchText);
+                        //for(String input_string : list_cities){
+                        //    if(input_string.toLowerCase().equals(searchText.toLowerCase())){
+                        //        mSearchResultsDisplay.setText("Information: ");
+                        //        mSearchResultsDisplay.setText(input_string);
+                        //        // display information on Earthquake
+                        //        break;
+                        //    }else{
+                        //        mSearchResultsDisplay.setText("No results match.");
+                         //   }
+                        //}
                     } // end of onClick method
 
                 } // end of View.OnClickListener
@@ -102,6 +105,25 @@ public class MainActivity extends AppCompatActivity {
         } // end if
         return true;
     } // end of onOptions
+    public void searcher(String arg){
+        CustomJSONParser JSONParser = new CustomJSONParser();
+        Map <String, String > inputMap = new HashMap();
+        //TODO: Tie in Android app input to execute .put command(s) below
+        //Use below line as a template to look up things; more details in CustomJSONParser.java
+        inputMap.put("mag", arg);
+        try{
+            List<Feature> searchResult = JSONParser.readJsonWithObjectMapper(inputMap);
+            for (Feature x: searchResult){
+                System.out.println("\n\n\n\n\n");
+                System.out.println(x.toString());
+                System.out.println("\n\n\n\n\n");
+                mSearchResultsDisplay.setText(x.toString());
+            }
+            //mSearchResultsDisplay.setText( searchResult);
+        }catch(Exception e){
+
+        }
+    }
 
 } // end of class
 
