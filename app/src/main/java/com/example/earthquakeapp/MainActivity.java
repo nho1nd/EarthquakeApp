@@ -1,6 +1,8 @@
 package com.example.earthquakeapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -10,6 +12,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.content.Intent;
 import android.util.Log;
+
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -110,13 +115,11 @@ public class MainActivity extends AppCompatActivity {
         Map <String, String > inputMap = new HashMap();
         //TODO: Tie in Android app input to execute .put command(s) below
         //Use below line as a template to look up things; more details in CustomJSONParser.java
-        inputMap.put("mag", arg);
+        inputMap.put("place", arg);
         try{
-            List<Feature> searchResult = JSONParser.readJsonWithObjectMapper(inputMap);
+            InputStream earthquakeData = getAssets().open("EarthquakeData.json");
+            List<Feature> searchResult = JSONParser.readJsonWithObjectMapper(inputMap, earthquakeData);
             for (Feature x: searchResult){
-                System.out.println("\n\n\n\n\n");
-                System.out.println(x.toString());
-                System.out.println("\n\n\n\n\n");
                 mSearchResultsDisplay.setText(x.toString());
             }
             //mSearchResultsDisplay.setText( searchResult);

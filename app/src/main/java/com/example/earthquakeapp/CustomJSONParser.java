@@ -1,13 +1,17 @@
 package com.example.earthquakeapp;
 
+import android.content.res.AssetManager;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -17,14 +21,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class CustomJSONParser {
-    public List <Feature> readJsonWithObjectMapper(Map <String, String> searchCriteria) throws IOException {
+    public List <Feature> readJsonWithObjectMapper(Map <String, String> searchCriteria, InputStream earthquakeData) throws IOException {
         //Jackson ObjectMapper: https://springframework.guru/processing-json-jackson/
         ObjectMapper objectMapper = new ObjectMapper();
         List <Feature> searchResult = null;
         try {
             //Turning JSON file into a stream/string
-            FileInputStream earthquakeData = new FileInputStream("app/src/main/res/EarthquakeData.json");
 
+            //FileInputStream earthquakeData = new FileInputStream("app/assets/EarthquakeData.json");
             //Making a Type Reference to a list of Features
             TypeReference<List<Feature>> typeReference= new TypeReference<List<Feature>>(){};
 
