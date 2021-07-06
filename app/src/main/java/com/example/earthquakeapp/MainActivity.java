@@ -54,16 +54,6 @@ public class MainActivity extends AppCompatActivity {
                         // check if search string matches
                         // maybe I can use a dictionary?
                         searcher(searchText);
-                        //for(String input_string : list_cities){
-                        //    if(input_string.toLowerCase().equals(searchText.toLowerCase())){
-                        //        mSearchResultsDisplay.setText("Information: ");
-                        //        mSearchResultsDisplay.setText(input_string);
-                        //        // display information on Earthquake
-                        //        break;
-                        //    }else{
-                        //        mSearchResultsDisplay.setText("No results match.");
-                         //   }
-                        //}
                     } // end of onClick method
 
                 } // end of View.OnClickListener
@@ -105,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             // create intent to go to next page
             Intent startAboutActivityIntent = new Intent(MainActivity.this, destinationActivity);
 
-            String msg = mSearchTermEditText.getText().toString();
+            String msg = searcher(mSearchTermEditText.getText().toString());
             startAboutActivityIntent.putExtra(Intent.EXTRA_TEXT, msg);
 
             startActivity(startAboutActivityIntent);
@@ -128,11 +118,9 @@ public class MainActivity extends AppCompatActivity {
             }else {
                 for (Feature x : searchResult) {
                     mSearchResultsDisplay.append("\nSearch result " + i + ": \n\n" + x.toString() + "\n");
-                    //mSearchResultsDisplay.append(x.toString());
-
-                    mSearchResultsDisplay.append(x.place_string());
+                    mSearchResultsDisplay.append(x.returnPlace());
                     i += 1;
-                    return x.place_string();
+                    return x.returnPlace();
                 }
             }
         }catch(Exception e){

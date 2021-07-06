@@ -28,26 +28,14 @@ public class MoreInfoActivity extends AppCompatActivity {
         mDisplayAboutTextView = (TextView) findViewById(R.id.tv_about_text);
         mOpenMapButton = (Button) findViewById(R.id.button_open_map);
 
-        // grabbing the data that the originating intent sends us
+        // Grabbing the coordinates of the FIRST result
         Intent intentThatStartedThisActivity = getIntent();
-        //String message = "Error. Please input text for search.";
-        //check is extra data
-        //if(intentThatStartedThisActivity.hasExtra(Intent.EXTRA_TEXT)){
         MainActivity obj = new MainActivity();
 
         final String message = intentThatStartedThisActivity.getStringExtra(Intent.EXTRA_TEXT);
         final String message2 = obj.searcher(message);
         mDisplayAboutTextView.append("\n" + message);
         mDisplayAboutTextView.append("\n" + message2);
-        //} // end if
-        //final String search_result =
-
-        //for(int i=0; i < 2; i++) // where x is the size of the list containing your alphabet.
-        //{
-        //    Button button = new Button(this);
-       //     button.setId(i);
-        //    MoreInfoActivity.add(button);
-       // }
 
         // open map button
         mOpenMapButton.setOnClickListener(
@@ -55,16 +43,16 @@ public class MoreInfoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v){
 
-                        openMap(message2);
+                        openMap(message);
 
                     } // end of onClick
                 } // end of View
         ); // end of setOnCli
     } // end of onCreate
 
-    public void openMap(String input_string){
-        //String addressString = "University of Notre Dame, IN"; // if message is used as location
-        Uri addressUri = Uri.parse("geo:0,0").buildUpon().appendQueryParameter("q", input_string).build();
+    public void openMap(String inputString){
+        //String addressString = "St. Louis, MO"; // if message is used as location
+        Uri addressUri = Uri.parse("geo:0,0").buildUpon().appendQueryParameter("q", inputString).build();
         Intent openMapIntent = new Intent(Intent.ACTION_VIEW);
         openMapIntent.setData(addressUri);
 

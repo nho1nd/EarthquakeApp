@@ -46,11 +46,27 @@ public class Feature {
                 "\nInstrumental Intensity of Event: " + properties.getMmi();
     }
 
-    public String place_string(){
+    public double[] returnCoordinates(){
+        return geometry.getCoordinates();
+    }
+
+    public String returnPlace(){
         String result;
         result = properties.getPlace();
         result = result.split("of ")[1];
         return result;
+    }
+    public String displayCoordinates(){
+        String s = "";
+        for (Double d: geometry.getCoordinates()){
+            s = s.concat(d.toString());
+            s = s.concat(" ,");
+        }
+        System.out.println("THE STRING IS: "+ s);
+        System.out.println("@@@@@@@@@@@");
+        System.out.println("@@@@@@@@@@@");
+
+        return s;
     }
 
     public String mag_string(){
