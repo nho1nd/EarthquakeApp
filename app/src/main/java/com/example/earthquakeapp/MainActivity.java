@@ -116,12 +116,14 @@ public class MainActivity extends AppCompatActivity {
             if (searchResult == null || searchResult.isEmpty()){
                 mSearchResultsDisplay.append("\nNo such earthquake exists.");
             }else {
+                String returnedPlace = "";
                 for (Feature x : searchResult) {
-                    mSearchResultsDisplay.append("\nSearch result " + i + ": \n\n" + x.toString() + "\n");
+                    mSearchResultsDisplay.append("\n\n``Search result " + i + ": \n\n" + x.toString() + "\n");
                     mSearchResultsDisplay.append(x.returnPlace());
                     i += 1;
-                    return x.returnPlace();
+                    returnedPlace = x.returnPlace();
                 }
+                return returnedPlace;
             }
         }catch(Exception e){
         }
