@@ -12,11 +12,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+
 public class MoreInfoActivity extends AppCompatActivity {
 
     private TextView mDisplayAboutTextView;
     private Button mOpenMapButton;
 
+    MainActivity obj = new MainActivity();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +33,21 @@ public class MoreInfoActivity extends AppCompatActivity {
         //String message = "Error. Please input text for search.";
         //check is extra data
         //if(intentThatStartedThisActivity.hasExtra(Intent.EXTRA_TEXT)){
-        final String message = intentThatStartedThisActivity.getStringExtra(Intent.EXTRA_TEXT);
-        mDisplayAboutTextView.append("\n" + message);
-        //} // end if
+        MainActivity obj = new MainActivity();
 
-        final String urlString = "https://www.nd.edu/"; // url string
+        final String message = intentThatStartedThisActivity.getStringExtra(Intent.EXTRA_TEXT);
+        final String message2 = obj.searcher(message);
+        mDisplayAboutTextView.append("\n" + message);
+        mDisplayAboutTextView.append("\n" + message2);
+        //} // end if
+        //final String search_result =
+
+        //for(int i=0; i < 2; i++) // where x is the size of the list containing your alphabet.
+        //{
+        //    Button button = new Button(this);
+       //     button.setId(i);
+        //    MoreInfoActivity.add(button);
+       // }
 
         // open map button
         mOpenMapButton.setOnClickListener(
@@ -43,7 +55,7 @@ public class MoreInfoActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v){
 
-                        openMap(message);
+                        openMap(message2);
 
                     } // end of onClick
                 } // end of View

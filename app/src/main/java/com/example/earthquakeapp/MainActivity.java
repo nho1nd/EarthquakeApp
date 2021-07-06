@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         } // end if
         return true;
     } // end of onOptions
-    public void searcher(String arg){
+    public String searcher(String arg){
         CustomJSONParser JSONParser = new CustomJSONParser();
         Map <String, String > inputMap = new HashMap();
         //TODO: Tie in Android app input to execute .put command(s) below
@@ -128,11 +128,16 @@ public class MainActivity extends AppCompatActivity {
             }else {
                 for (Feature x : searchResult) {
                     mSearchResultsDisplay.append("\nSearch result " + i + ": \n\n" + x.toString() + "\n");
+                    //mSearchResultsDisplay.append(x.toString());
+
+                    mSearchResultsDisplay.append(x.place_string());
                     i += 1;
+                    return x.place_string();
                 }
             }
         }catch(Exception e){
         }
+        return " ";
     }
 
 } // end of class

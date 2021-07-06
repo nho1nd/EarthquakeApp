@@ -45,4 +45,18 @@ public class Feature {
                 "\nSignificance of Earthquake(Aggregate): " + properties.getSig() +
                 "\nInstrumental Intensity of Event: " + properties.getMmi();
     }
+
+    public String place_string(){
+        String result;
+        result = properties.getPlace();
+        result = result.split("of ")[1];
+        return result;
+    }
+
+    public String mag_string(){
+        String result;
+        result = String.valueOf(properties.getMag());
+        result = result.split("of ")[-1];
+        return result;
+    }
 }
